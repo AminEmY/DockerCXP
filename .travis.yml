@@ -4,20 +4,20 @@ services:
     - docker
 
 before_install:
-    - docker build -t Amin/react-test -f ./client/Dockerfile.dev ./client
+    - docker build -t amin/react-test -f ./client/Dockerfile.dev ./client
 
 script:
     - docker run -e CI=true Amin/react-test npm test
 
 after_success:
-    - docker build -t Amin/CX-client ./client
-    - docker build -t Amin/CX-nginx ./nginx 
-    - docker build -t Amin/CX-server ./server 
-    - docker build -t Amin/CX-worker ./worker
+    - docker build -t amin/cx-client ./client
+    - docker build -t amin/cx-nginx ./nginx 
+    - docker build -t amin/cx-server ./server 
+    - docker build -t amin/cx-worker ./worker
     # Log in to the docker CLI
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
     #Take those images and push them to docker hub
-    - docker push Amin/CX-client
-    - docker push Amin/CX-nginx
-    - docker push Amin/CX-server
-    - docker push Amin/CX-worker
+    - docker push amin/cx-client
+    - docker push amin/cx-nginx
+    - docker push amin/cx-server
+    - docker push amin/cx-worker
