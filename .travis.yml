@@ -1,0 +1,16 @@
+language: generic
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t Amin/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+    - docker run -e CI=true Amin/react-test npm test
+
+after_success:
+    - docker build -t Amin/CX-client ./client
+    - docker build -t Amin/CX-nginx ./nginx 
+    - docker build -t Amin/CX-server ./server 
+    - docker build -t Ami/CX-worker ./worker
