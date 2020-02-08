@@ -4,20 +4,20 @@ services:
     - docker
 
 before_install:
-    - docker build -t amin/react-test -f ./client/Dockerfile.dev ./client
+    - docker build -t aminsysco/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-    - docker run -e CI=true amin/react-test npm test
+    - docker run -e CI=true aminsysco/react-test npm test
 
 after_success:
-    - docker build -t amin/cx-client ./client
-    - docker build -t amin/cx-nginx ./nginx 
-    - docker build -t amin/cx-server ./server 
-    - docker build -t amin/cx-worker ./worker
+    - docker build -t aminsysco/cx-client ./client
+    - docker build -t aminsysco/cx-nginx ./nginx 
+    - docker build -t aminsysco/cx-server ./server 
+    - docker build -t aminsysco/cx-worker ./worker
     # Log in to the docker CLI
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
     #Take those images and push them to docker hub
-    - sudo docker push amin/cx-client
-    - sudo docker push amin/cx-nginx
-    - sudo docker push amin/cx-server
-    - sudo docker push amin/cx-worker
+    - sudo docker push aminsysco/cx-client
+    - sudo docker push aminsysco/cx-nginx
+    - sudo docker push aminsysco/cx-server
+    - sudo docker push aminsysco/cx-worker
