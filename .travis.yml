@@ -13,4 +13,11 @@ after_success:
     - docker build -t Amin/CX-client ./client
     - docker build -t Amin/CX-nginx ./nginx 
     - docker build -t Amin/CX-server ./server 
-    - docker build -t Ami/CX-worker ./worker
+    - docker build -t Amin/CX-worker ./worker
+    # Log in to the docker CLI
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    #Take those images and push them to docker hub
+    - docker push Amin/CX-client
+    - docker push Amin/CX-nginx
+    - docker push Amin/CX-server
+    - docker push Amin/CX-worker
