@@ -17,7 +17,7 @@ after_success:
     # Log in to the docker CLI
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
     #Take those images and push them to docker hub
-    - docker push amin/cx-client
-    - docker push amin/cx-nginx
-    - docker push amin/cx-server
-    - docker push amin/cx-worker
+    - sudo docker push amin/cx-client
+    - sudo docker push amin/cx-nginx
+    - sudo docker push amin/cx-server
+    - sudo docker push amin/cx-worker
