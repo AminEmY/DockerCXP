@@ -7,7 +7,7 @@ before_install:
     - docker build -t amin/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-    - docker run -e CI=true Amin/react-test npm test
+    - docker run -e CI=true amin/react-test npm test
 
 after_success:
     - docker build -t amin/cx-client ./client
